@@ -8,9 +8,9 @@ import root
 abstract class VGraph 
 	super Root
 	 
-	type VG: VGraph
-	type VN: VNode
-	type VE: VEdge
+	type VG: nullable VGraph
+	type VN: nullable VNode
+	type VE: nullable VEdge
 	
 	init
 	do
@@ -20,7 +20,99 @@ abstract class VGraph
 	private var edges = new Array [ VE ]
 	private var nodes = new Array [ VN ]
 	
+	#////////////////////////////////////////////////////////////////
+	
+	fun addNode(node : VN)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun deleteNode(node : VN)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun addEdge(edge : VE, node1 : VN, node2 : VN)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun deleteEdge(edge : VE)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun delete
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun haveEdge (edge : VE) : Bool
+	do
+		return edges.has(edge)
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun haveNode (node : VN) : Bool
+	do
+		return nodes.has(node)
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printSelf
+	do
+		print "\nPrint {getName} : "
+		printNodes
+		printEdges
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printNodes
+	do
+		var result : String = ""
 		
+		if nodes.length == 0 then
+			result = "aucun sommet dans {getName}"
+		else
+			for node in nodes
+			do
+				result += "{node.getName} , "
+			end
+		end
+		
+		print "\tSommets de {getName} : {result}"
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printEdges
+	do
+		var result : String = ""
+		
+		if edges.length == 0 then
+			result = "aucune aretes dans {getName}"
+		else
+			for edge in edges
+			do
+				result += "{edge.getName} , "
+			end
+		end
+		
+		print "\tAretes de {getName} : {result}"
+	end	
 end
 
 #///////////////////////////////////////////#
@@ -31,8 +123,8 @@ abstract class VNode
 	super Root
 	
 	type VG: nullable VGraph
-	type VN: VNode
-	type VE: VEdge
+	type VN: nullable VNode
+	type VE: nullable VEdge
 	
 	init
 	do
@@ -54,7 +146,7 @@ abstract class VEdge
 	super Root
 	
 	type VG: nullable VGraph
-	type VN: nullable VNode
+	type VN: nullable VNode 
 	type VE: nullable VEdge
 	
 	init
