@@ -66,36 +66,97 @@ abstract class VEdge
 	private var node1 : nullable VN = null
 	private var node2 : nullable VN = null
 	
+	#////////////////////////////////////////////////////////////////
+	
+	fun delete
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun addNodes(node1 : VN, node2 : VN)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
 	
 	fun haveGraph : Bool 
 	do
 		 return graph != null
 	end
 	
+	#////////////////////////////////////////////////////////////////
+	
 	fun haveNode1 : Bool
 	do 
 		return node1 != null
 	end
+	
+	#////////////////////////////////////////////////////////////////
 	
 	fun haveNode2 : Bool
 	do 
 		return node2 != null
 	end
 	
+	#////////////////////////////////////////////////////////////////
+	
 	fun haveNodes : Bool
 	do
 		return haveNode1 and haveNode2
 	end
 	
-	fun getNeighborOfNode(node : VN) : VN
+	#////////////////////////////////////////////////////////////////
+	
+	fun printSelf
 	do
-		
-	
-	
-		return null
+		print "\nPrint {getName} : "
+        printGraph
+        printNodes
 	end
 	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printGraph
+	do
+        if haveGraph then
+            print "\tGraphe de {getName} : {graph.getName}"
+        else
+            print "\tGraphe de {getName} : null"
+        end
+    end
+    
+    #////////////////////////////////////////////////////////////////
+    
+	fun printNodes
+	do
+		if node1 != null then
+            print "\tSommet 1 : {node1.getName}"
+        else
+            print "\tSommet 1 : null "
+        end
 
-
-
+        if node2 != null then
+            print "\tSommet 2 : {node2.getName}"
+        else
+            print "\tSommet 2 : null "
+        end
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun getNeighborOfNode(node : VN) : VN
+	do
+		if haveNodes then
+			if node1 == node then
+				return node2
+			else if node2 == node then
+				return node1
+			end
+		end
+		
+		return null
+	end
 end
