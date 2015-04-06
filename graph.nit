@@ -1,5 +1,7 @@
 module graph
-import templategraphe
+
+import templategraph
+
 
 class Graph 
 	super VGraph

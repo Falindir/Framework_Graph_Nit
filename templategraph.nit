@@ -1,4 +1,4 @@
-module templategraphe
+module templategraph
 import root
 
 #///////////////////////////////////////////#
@@ -62,10 +62,40 @@ abstract class VEdge
 		print "Creation d'un GNode {getClassName} -> {getName}"
 	end
 		
-	private var graphe : nullable VG = null
+	private var graph : nullable VG = null
 	private var node1 : nullable VN = null
 	private var node2 : nullable VN = null
 	
+	
+	fun haveGraph : Bool 
+	do
+		 return graph != null
+	end
+	
+	fun haveNode1 : Bool
+	do 
+		return node1 != null
+	end
+	
+	fun haveNode2 : Bool
+	do 
+		return node2 != null
+	end
+	
+	fun haveNodes : Bool
+	do
+		return haveNode1 and haveNode2
+	end
+	
+	fun getNeighborOfNode(node : VN) : VN
+	do
+		
+	
+	
+		return null
+	end
+	
+
 
 
 end

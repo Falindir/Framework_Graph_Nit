@@ -1,6 +1,6 @@
 module test
 
-import graph
+import graph 
 import molecule
 import network
 
@@ -14,7 +14,6 @@ var s1 = new Node ("S1")
 var s2 = new Node ("S2")
 
 s2.whoamI
-
 
 
 

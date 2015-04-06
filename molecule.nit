@@ -1,5 +1,5 @@
 module molecule
-import templategraphe
+import templategraph
 
 class Molecule
 	super VGraph
