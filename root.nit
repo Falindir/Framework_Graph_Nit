@@ -15,7 +15,7 @@ abstract class Root
 	
 	fun whoamI
 	do
-		print "Object : name -> " + name + " , class -> " + getClassName
+		print "\nObject : name -> {name} , class -> {getClassName}"
 	end
 
 end  
