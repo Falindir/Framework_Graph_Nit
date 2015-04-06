@@ -2,7 +2,7 @@ module test
 
 import graph
 import molecule
-import reseau
+import network
 
 var g1 = new Graph ("G1")
 

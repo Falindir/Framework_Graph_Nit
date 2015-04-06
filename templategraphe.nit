@@ -1,5 +1,5 @@
 module templategraphe
-import racine
+import root
 
 abstract class VGraph 
 	super Root

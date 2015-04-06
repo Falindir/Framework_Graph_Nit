@@ -1,4 +1,4 @@
-module reseau
+module network
 import templategraphe
 
 class Network

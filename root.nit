@@ -1,4 +1,4 @@
-module racine
+module root
 
 abstract class Root
 	private var name : String
