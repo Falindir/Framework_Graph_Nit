@@ -24,35 +24,82 @@ abstract class VGraph
 	
 	fun addNode(node : VN)
 	do
-	
+		if not haveNode(node) then
+            print "Ajout du sommet {node.getName} au graphe {getName}"
+            nodes.add(node)
+            node.addGraph(self)
+        end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
 	fun deleteNode(node : VN)
 	do
-	
+		if haveNode(node) then
+            print "Suppression de {node.getName} du graphe {getName}"
+            nodes.remove(node)
+            node.delete
+        end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
 	fun addEdge(edge : VE, node1 : VN, node2 : VN)
 	do
-	
+		if not haveEdge(edge) then
+			if node1 != node2 then
+				if node1.haveSameGraph(node2) then
+					print "Ajout de l'arete {edge.getName} au graphe {getName}"
+                    edges.add(edge)
+                    addNode(node1)
+                    addNode(node2)
+                    edge.addNodes(node1, node2)
+				else
+					print "Impossible d'ajouter une arete {edge.getName} de {node1.getName} " + 
+                          " a {node2.getName} car les deux sommets ne sont pas dans le même graphe"
+				end			
+			else 
+				print "Impossible d'ajouter une arete {edge.getName} de {node1.getName}" +  
+						" a {node2.getName} au graphe {getName} car c'est le même sommet"
+			end		
+		end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
 	fun deleteEdge(edge : VE)
 	do
-	
+		if haveEdge(edge) then
+            print "Suppression de l'arete {edge.getName} du graphe {getName}"
+            edges.remove(edge)
+            edge.delete
+        end
 	end
 	
 	#////////////////////////////////////////////////////////////////
-	#////////////////////////////////////////////////////////////////
+	
 	fun delete
 	do
-	
+		print "Suppression du graphe {getName}"
+        var tempNode = new Array [ VN ]
+        tempNode.add_all(nodes)
+        nodes.clear
+        
+        var tempEdge = new Array [ VE ]
+        tempEdge.add_all(edges)
+        edges.clear
+        
+        for node in tempNode
+        do
+            print "Suppression du sommet {node.getName} du graphe {getName}"
+            node.delete
+        end
+        
+        for edge in tempEdge
+        do
+            print "Suppression de l'arete {edge.getName} du graphe {getName}"
+            edge.delete
+        end
 	end
 	
 	#////////////////////////////////////////////////////////////////
@@ -252,13 +299,6 @@ abstract class VNode
 		end
 		
 		return false
-	end
-	
-	#///////////////////////////////////////////////////////////////
-	
-	fun isSameNode(node2 : VN) : Bool
-	do
-		return self == node2
 	end
 	
 	#///////////////////////////////////////////////////////////////

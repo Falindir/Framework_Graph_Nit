@@ -18,6 +18,10 @@ a1.printSelf
 s1.printSelf
 s2.printSelf
 
+g1.addNode(s1)
+
+g1.printSelf
+
 
 
 
