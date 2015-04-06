@@ -192,28 +192,74 @@ abstract class VNode
 	
 	fun addGraph(g : VG)
 	do
-	
+		if haveGraph then
+			if isSameGraph(g) then
+				g.addNode(self)
+			else
+				delete
+				print "Ajout du graphe {g.getName} au sommet {getName}"
+				graph = g
+            	g.addNode(self)				
+			end		
+		else 
+		    print "Ajout du graphe {g.getName} au sommet {getName}"
+            graph = g
+            g.addNode(self)		
+		end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
-	fun addEdge(egde : VE, node2 : VN)
+	fun addEdge(edge : VE, node2 : VN)
 	do
-	
+		if (not haveEdge(edge)) and (edge.haveGraph) and (self == edge.getNeighborOfNode(node2)) then
+			if self != node2 then
+				if haveSameGraph(node2) then
+					print "Ajout de l'arete {edge.getName} au sommet {getName}"
+                    edges.add(edge)
+                    edge.addNodes(self, node2)
+				else
+					print "Impossible d'ajouter une arete {edge.getName} de {getName} " + 
+                          " a {node2.getName} car les deux sommets ne sont pas dans le même graphe"					
+				end			
+			else
+				print "Impossible d'ajouter une arete {edge.getName} de {getName}" +  
+						" a {node2.getName} au graphe {graph.getName} car c'est le même sommet"
+			end		
+		else if (not haveEdge(edge)) and (not edge.haveGraph) then
+            edge.addNodes(self, node2)
+        end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
-	fun deleteEdge(egde : VE)
+	fun deleteEdge(edge : VE)
 	do
-	
+		if haveEdge(edge) then 
+            print "Suppression de l'arete {edge.getName} du sommet {getName}"
+            edges.remove(edge)
+            edge.delete
+        end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
 	fun delete
 	do
-	
+		if haveGraph then
+			print "Suppression du graphe {graph.getName} de {getName}"
+            var tempGraph = graph
+            graph = null
+            var tempEdges = new Array [ VE ]
+            tempEdges.add_all(edges)
+            edges.clear
+            tempGraph.deleteNode(self)
+            for edge in tempEdges
+            do
+                print "Suppression de l'arete {edge.getName} de {getName}"
+                edge.delete
+            end
+		end
 	end
 	
 	#////////////////////////////////////////////////////////////////
