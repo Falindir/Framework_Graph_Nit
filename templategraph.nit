@@ -364,15 +364,47 @@ abstract class VEdge
 	
 	fun delete
 	do
-	
+		if haveGraph then
+			print "Suppression du graphe {graph.getName} de {getName}"
+            print "Suppression du sommet {node1.getName} de {getName}"
+            print "Suppression du sommet {node2.getName} de {getName}"
+            var tempGraph = graph
+            graph = null
+            var tempNode1 = node1
+            node1 = null
+            var tempNode2 = node2
+            node2 = null
+            tempGraph.deleteEdge(self)
+            tempNode1.deleteEdge(self)
+            tempNode2.deleteEdge(self)		
+		end
 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
 	fun addNodes(node1 : VN, node2 : VN)
 	do
-	
-	end
+		if not haveNodes then
+			if node1 != node2 then
+				if node1.haveSameGraph(node2) then
+					print "Ajout des sommets {node1.getName} et {node2.getName} à l'arète {getName}"
+                    print "Ajout du graphe {node1.getGraph.getName} à l'arète {getName}"
+                    self.graph = node1.getGraph
+                    self.node1 = node1
+                    self.node2 = node2
+                    graph.addEdge(self, node1, node2)
+                    node1.addEdge(self, node2)
+                    node2.addEdge(self, node1)
+				else
+					print "Impossible d'ajouter une arete {getName} de {node1.getName} " + 
+                          " a {node2.getName} car les deux sommets ne sont pas dans le même graphe"
+				end			
+			else 
+				print "Impossible d'ajouter une arete {getName} de {node1.getName}" +  
+						" a {node2.getName} au graphe {node1.getGraph.getName} car c'est le même sommet"
+			end		
+		end
+ 	end
 	
 	#////////////////////////////////////////////////////////////////
 	
