@@ -8,6 +8,11 @@ class Network
 	redef type VN : NetworkNode
 	redef type VE : Link
 	
+	redef fun getClassName : String
+	do
+		return "Network"
+	end	
+	
 end
 
 class NetworkNode
@@ -17,6 +22,11 @@ class NetworkNode
 	redef type VN : NetworkNode
 	redef type VE : Link
 	
+	redef fun getClassName : String
+	do
+		return "NetworkNode"
+	end
+	
 end
 
 class Link
@@ -25,6 +35,11 @@ class Link
 	redef type VG : Network
 	redef type VN : NetworkNode
 	redef type VE : Link
+	
+	redef fun getClassName : String
+	do
+		return "Link"
+	end
 	
 end
 	

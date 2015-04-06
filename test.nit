@@ -21,6 +21,17 @@ s2.printSelf
 g1.addNode(s1)
 
 g1.printSelf
+s1.printSelf
+
+s2.addGraph(g1)
+g1.printSelf
+s2.printSelf
+
+g1.addEdge(a1, s1, s2)
+g1.printSelf
+s1.printSelf
+s2.printSelf
+a1.printSelf
 
 
 
