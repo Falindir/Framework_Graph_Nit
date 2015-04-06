@@ -8,9 +8,14 @@ abstract class Root
 		return name
 	end
 	
+	fun getClassName : String 
+	do
+		return self.to_s
+	end
+	
 	fun whoamI
 	do
-		print "Object : name -> " + name + " , class -> " + self.to_s
+		print "Object : name -> " + name + " , class -> " + getClassName
 	end
 
 end  

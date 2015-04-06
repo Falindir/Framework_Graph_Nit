@@ -10,7 +10,7 @@ abstract class VGraph
 	
 	private var edges = new Array [ VE ]
 	private var nodes = new Array [ VN ]
-	
+		
 end
 
 abstract class VNode
