@@ -2,28 +2,28 @@ module graph
 import templategraphe
 
 class Graph 
-	super VGraphe
+	super VGraph
 	
 	redef type VG : Graph
-	redef type VS : VSommet
-	redef type VA : Arete
+	redef type VN : Node
+	redef type VE : Edge
 	
 end
 
-class Sommet 
-	super VSommet
+class Node 
+	super VNode
 	
 	redef type VG : Graph
-	redef type VS : VSommet
-	redef type VA : Arete
+	redef type VN : Node
+	redef type VE : Edge
 	
 end
 
-class Arete
-	super VArete
+class Edge
+	super VEdge
 	
 	redef type VG : Graph
-	redef type VS : VSommet
-	redef type VA : Arete
+	redef type VN : Node
+	redef type VE : Edge
 	
 end

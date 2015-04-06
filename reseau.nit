@@ -1,30 +1,30 @@
 module reseau
 import templategraphe
 
-class Reseau
-	super VGraphe
+class Network
+	super VGraph
 	
-	redef type VG : Reseau
-	redef type VS : Noeud
-	redef type VA : Lien
-	
-end
-
-class Noeud
-	super VSommet
-	
-	redef type VG : Reseau
-	redef type VS : Noeud
-	redef type VA : Lien
+	redef type VG : Network
+	redef type VN : NetworkNode
+	redef type VE : Link
 	
 end
 
-class Lien
-	super VArete
+class NetworkNode
+	super VNode
 	
-	redef type VG : Reseau
-	redef type VS : Noeud
-	redef type VA : Lien
+	redef type VG : Network
+	redef type VN : NetworkNode
+	redef type VE : Link
+	
+end
+
+class Link
+	super VEdge
+	
+	redef type VG : Network
+	redef type VN : NetworkNode
+	redef type VE : Link
 	
 end
 	

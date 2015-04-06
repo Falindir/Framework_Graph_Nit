@@ -1,40 +1,40 @@
 module templategraphe
 import racine
 
-abstract class VGraphe 
-	super Racine
+abstract class VGraph 
+	super Root
 	 
-	type VG: VGraphe
-	type VS: VSommet
-	type VA: VArete
+	type VG: VGraph
+	type VN: VNode
+	type VE: VEdge
 	
-	var aretes = new Array [ VA ]
-	var sommets = new Array [ VS ]
-	
-end
-
-abstract class VSommet
-	super Racine
-	
-	type VG: nullable VGraphe
-	type VS: VSommet
-	type VA: VArete
-	
-	var graphe : nullable VG = null
-	var aretes = new Array [ VA ]
+	private var edges = new Array [ VE ]
+	private var nodes = new Array [ VN ]
 	
 end
 
-abstract class VArete
-	super Racine
+abstract class VNode
+	super Root
 	
-	type VG: nullable VGraphe
-	type VS: nullable VSommet
-	type VA: nullable VArete
+	type VG: nullable VGraph
+	type VN: VNode
+	type VE: VEdge
+	
+	private var graph : nullable VG = null
+	private var edge = new Array [ VE ]
+	
+end
+
+abstract class VEdge
+	super Root
+	
+	type VG: nullable VGraph
+	type VN: nullable VNode
+	type VE: nullable VEdge
 	
 	private var graphe : nullable VG = null
-	private var s1 : nullable VS = null
-	private var s2 : nullable VS = null
+	private var node1 : nullable VN = null
+	private var node2 : nullable VN = null
 	
 
 

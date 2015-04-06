@@ -2,28 +2,28 @@ module molecule
 import templategraphe
 
 class Molecule
-	super VGraphe
+	super VGraph
 	
 	redef type VG : Molecule
-	redef type VS : Atom
-	redef type VA : Liaison
+	redef type VN : Atom
+	redef type VE : Bond
 	
 end
 
 class Atom
-	super VSommet
+	super VNode
 	
 	redef type VG : Molecule
-	redef type VS : Atom
-	redef type VA : Liaison
+	redef type VN : Atom
+	redef type VE : Bond
 	
 end
 
-class Liaison
-	super VArete
+class Bond
+	super VEdge
 	
 	redef type VG : Molecule
-	redef type VS : Atom
-	redef type VA : Liaison
+	redef type VN : Atom
+	redef type VE : Bond
 	
 end

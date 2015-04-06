@@ -1,6 +1,6 @@
 module racine
 
-abstract class Racine
+abstract class Root
 	private var name : String
 	
 	fun getName : String
