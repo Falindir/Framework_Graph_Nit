@@ -49,7 +49,7 @@ abstract class VGraph
 	end
 	
 	#////////////////////////////////////////////////////////////////
-	
+	#////////////////////////////////////////////////////////////////
 	fun delete
 	do
 	
@@ -84,7 +84,7 @@ abstract class VGraph
 	do
 		var result : String = ""
 		
-		if nodes.length == 0 then
+		if nodes.is_empty then
 			result = "aucun sommet dans {getName}"
 		else
 			for node in nodes
@@ -102,7 +102,7 @@ abstract class VGraph
 	do
 		var result : String = ""
 		
-		if edges.length == 0 then
+		if edges.is_empty then
 			result = "aucune aretes dans {getName}"
 		else
 			for edge in edges
@@ -132,9 +132,171 @@ abstract class VNode
 	end
 	
 	private var graph : nullable VG = null
-	private var edge = new Array [ VE ]
+	private var edges = new Array [ VE ]
 	
+	#////////////////////////////////////////////////////////////////
 	
+	fun getGraph : VG
+	do
+		return graph
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun addGraph(g : VG)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun addEdge(egde : VE, node2 : VN)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun deleteEdge(egde : VE)
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun delete
+	do
+	
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun haveGraph : Bool
+	do
+		return graph != null
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printSelf
+	do
+		print "\nPrint {getName} : "
+        printGraph
+        printEdges
+        printNeighbors
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printGraph
+	do
+        if haveGraph then
+            print "\tGraphe de {getName} : {graph.getName}"
+        else
+            print "\tGraphe de {getName} : null"
+        end
+    end
+    
+    #////////////////////////////////////////////////////////////////
+    
+    fun printEdges
+	do
+		var result : String = ""
+		
+		if edges.is_empty then
+			result = "aucune aretes dans {getName}"
+		else
+			for edge in edges
+			do
+				result += "{edge.getName} , "
+			end
+		end
+		
+		print "\tAretes de {getName} : {result}"
+	end
+	
+	#////////////////////////////////////////////////////////////////
+	
+	fun printNeighbors
+	do
+		var result : String = ""
+        if edges.is_empty then
+            result = "aucun sommets voisin de {getName}"
+        else
+            for node in getNeighbors
+            do
+                result += "{node.getName} par l'arete {node.getEdgeWithNeighbor(self).getName} , "
+       		end
+       	end
+       		
+       print "\tVoisins de {getName} : {result}"
+	end
+	
+	#///////////////////////////////////////////////////////////////
+	
+	fun haveSameGraph(node2 : VN) : Bool
+	do
+		if haveGraph and node2.haveGraph then
+			return graph == node2.getGraph
+		end
+	
+		return false
+	end
+	
+	#///////////////////////////////////////////////////////////////
+	
+	fun isSameGraph(g : VG) : Bool
+	do
+		if haveGraph then
+			return graph == g
+		end
+		
+		return false
+	end
+	
+	#///////////////////////////////////////////////////////////////
+	
+	fun isSameNode(node2 : VN) : Bool
+	do
+		return self == node2
+	end
+	
+	#///////////////////////////////////////////////////////////////
+	
+	fun haveEdge(edge : VE) : Bool
+	do
+		return edges.has(edge)
+	end
+	
+	#///////////////////////////////////////////////////////////////
+	
+	fun getNeighbors : Array[ VN ]
+	do
+		var neighbors = new Array[ VN ]
+		
+		for edge in edges
+		do
+			neighbors.add(edge.getNeighborOfNode(self))
+		end
+	
+		return neighbors
+	end
+	
+	#///////////////////////////////////////////////////////////////
+	
+	fun getEdgeWithNeighbor(node2 : VN) : VE
+	do
+		for edge in edges
+		do
+			var node = edge.getNeighborOfNode(self)
+			
+			if node2 == node then
+				return edge
+			end		
+		end
+	
+		return null
+	end
 	
 end
 

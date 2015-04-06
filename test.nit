@@ -15,6 +15,8 @@ var s2 = new Node ("S2")
 
 g1.printSelf
 a1.printSelf
+s1.printSelf
+s2.printSelf
 
 
 
