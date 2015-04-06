@@ -1,5 +1,5 @@
 module network
-import templategraph 
+import virtualGraphTemplate::templategraph 
 
 class Network
 	super VGraph

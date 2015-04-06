@@ -1,8 +1,9 @@
 module test
 
-import graph 
-import molecule
-import network
+import testABC::aa
+import graphPackage::graph
+import graphPackage::molecule
+import graphPackage::network
 
 print "Debut test type virtuel nit\n"
 
@@ -34,9 +35,16 @@ s2.printSelf
 a1.printSelf
 
 
+var a = new A("r")
+
+a.whoamI
 
 
 
+var m = new Molecule("MO1")
+m.whoamI
 
+var r = new Network("RES1")
+r.whoamI
 
 

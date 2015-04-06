@@ -1,6 +1,7 @@
 module graph
 
-import templategraph
+import virtualGraphTemplate::templategraph
+
 
 
 class Graph 

@@ -1,0 +1,4 @@
+module virtualGraphTemplate
+
+import templategraph
+
