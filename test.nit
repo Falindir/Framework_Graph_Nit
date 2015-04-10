@@ -26,6 +26,7 @@ print "\nTest 2 - Ajout de l'aretes A1 de S1 a S2 par G1"
 	g1.addEdge(a1, s1, s2)
 	#a1.addNodes(s1, s2)
 	#s1.addEdge(a1, s2)
+	
 	g1.printSelf
 	s1.printSelf
 	s2.printSelf
@@ -40,6 +41,8 @@ print "\nTest 3 - Ajout d'un atom AT1 a la molecule MOL1"
 	atom1.printSelf
 
 print "\nTest 4 - Test chimère"
+
+#Jean Privat
 
 	var bond1 = new Bond("BON1")
 

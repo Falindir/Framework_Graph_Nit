@@ -14,7 +14,7 @@ abstract class VGraph
 	
 	init
 	do
-		print "Creation d'un GGraph {getClassName} -> {getName}"
+		print "Creation d'un GGraph : {getClassName} -> {getName}"
 	end
 	
 	private var edges = new Array [ VE ]
@@ -27,7 +27,7 @@ abstract class VGraph
 		if not haveNode(node) then
             print "Ajout du sommet {node.getName} au graphe {getName}"
             nodes.add(node)
-            node.addGraph(self)
+            node.addGraph(self.as(VG))
         end
 	end
 	
@@ -175,7 +175,7 @@ abstract class VNode
 	
 	init
 	do
-		print "Creation d'un GNode {getClassName} -> {getName}"
+		print "Creation d'un GNode : {getClassName} -> {getName}"
 	end
 	
 	private var graph : nullable VG = null
@@ -194,17 +194,17 @@ abstract class VNode
 	do
 		if haveGraph then
 			if isSameGraph(g) then
-				g.addNode(self)
+				g.addNode(self.as(VN))
 			else
 				delete
 				print "Ajout du graphe {g.getName} au sommet {getName}"
 				graph = g
-            	g.addNode(self)				
+            	g.addNode(self.as(VN))			
 			end		
 		else 
 		    print "Ajout du graphe {g.getName} au sommet {getName}"
             graph = g
-            g.addNode(self)		
+            g.addNode(self.as(VN))	
 		end
 	end
 	
@@ -217,7 +217,7 @@ abstract class VNode
 				if haveSameGraph(node2) then
 					print "Ajout de l'arete {edge.getName} au sommet {getName}"
                     edges.add(edge)
-                    edge.addNodes(self, node2)
+                    edge.addNodes(self.as(VN), node2)
 				else
 					print "Impossible d'ajouter une arete {edge.getName} de {getName} " + 
                           " a {node2.getName} car les deux sommets ne sont pas dans le même graphe"					
@@ -227,7 +227,7 @@ abstract class VNode
 						" a {node2.getName} au graphe {graph.getName} car c'est le même sommet"
 			end		
 		else if (not haveEdge(edge)) and (not edge.haveGraph) then
-            edge.addNodes(self, node2)
+            edge.addNodes(self.as(VN), node2)
         end
 	end
 	
@@ -253,7 +253,7 @@ abstract class VNode
             var tempEdges = new Array [ VE ]
             tempEdges.add_all(edges)
             edges.clear
-            tempGraph.deleteNode(self)
+            tempGraph.deleteNode(self.as(VN))
             for edge in tempEdges
             do
                 print "Suppression de l'arete {edge.getName} de {getName}"
@@ -362,7 +362,7 @@ abstract class VNode
 		
 		for edge in edges
 		do
-			neighbors.add(edge.getNeighborOfNode(self))
+			neighbors.add(edge.getNeighborOfNode(self.as(VN)))
 		end
 	
 		return neighbors
@@ -374,7 +374,7 @@ abstract class VNode
 	do
 		for edge in edges
 		do
-			var node = edge.getNeighborOfNode(self)
+			var node = edge.getNeighborOfNode(self.as(VN))
 			
 			if node2 == node then
 				return edge
@@ -399,7 +399,7 @@ abstract class VEdge
 	
 	init
 	do
-		print "Creation d'un GNode {getClassName} -> {getName}"
+		print "Creation d'un GNode : {getClassName} -> {getName}"
 	end
 		
 	private var graph : nullable VG = null
@@ -420,9 +420,9 @@ abstract class VEdge
             node1 = null
             var tempNode2 = node2
             node2 = null
-            tempGraph.deleteEdge(self)
-            tempNode1.deleteEdge(self)
-            tempNode2.deleteEdge(self)		
+            tempGraph.deleteEdge(self.as(VE))
+            tempNode1.deleteEdge(self.as(VE))
+            tempNode2.deleteEdge(self.as(VE))		
 		end
 	end
 	
@@ -438,9 +438,9 @@ abstract class VEdge
                     self.graph = node1.getGraph
                     self.node1 = node1
                     self.node2 = node2
-                    graph.addEdge(self, node1, node2)
-                    node1.addEdge(self, node2)
-                    node2.addEdge(self, node1)
+                    graph.addEdge(self.as(VE), node1, node2)
+                    node1.addEdge(self.as(VE), node2)
+                    node2.addEdge(self.as(VE), node1)
 				else
 					print "Impossible d'ajouter une arete {getName} de {node1.getName} " + 
                           " a {node2.getName} car les deux sommets ne sont pas dans le même graphe"

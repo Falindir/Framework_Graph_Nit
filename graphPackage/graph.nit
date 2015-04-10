@@ -13,7 +13,7 @@ class Graph
 	
 	redef fun getClassName : String
 	do
-		return "Graphe"
+		return "Graph"
 	end
 	
 end
